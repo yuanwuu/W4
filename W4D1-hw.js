@@ -23,7 +23,7 @@ class Person {
         this.weight = weight || 0
         this.mood = mood || 0
         this.hamsters = []
-        this.bankAccount = bankAccount
+        this.bankAccount = bankAccount || 0
     }
 
     getName() {
@@ -35,9 +35,7 @@ class Person {
     }
 
     getWeight() {
-        if (eat() > 5){
-            return this.weight += 10
-        }
+        return this.weight
     }
 
     greet(){
@@ -45,14 +43,13 @@ class Person {
     }
 
     eat(){
-        if (Person < 5){
-            this.weight += 4
-        }
-        return this.mood += 2
+        this.mood ++
+        return this.getWeight ++
     }
 
     exercise(){
-        return this.weight -= 2
+        this.weight --
+        
     }
 
     ageUp(){
@@ -73,5 +70,3 @@ class Person {
 
 
 const Timmy = new Person('Timmy',5,'43cm','50lb',6,false,100)
-console.log(Timmy)
-
