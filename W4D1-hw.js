@@ -1,6 +1,6 @@
 class Hamster {
-    constructor(name){
-        this.owner = ''
+    constructor(name){ // 
+        this.owner = '' // <- this value is set to an empty string, so no need to specific in the parameter
         this.name = name
         this.price = 15
     }
@@ -16,7 +16,7 @@ class Hamster {
 }
 
 class Person {
-    constructor(name){ // properties dont have to all specified in the parameter
+    constructor(name){ 
         this.name = name
         this.age = 0
         this.height = 0
@@ -42,17 +42,17 @@ class Person {
         console.log(`Hello ${this.name}`)
     }
 
-    eat(num){ // <- this num 
-        this.mood += num
+    eat(num){ // <- this num is a param for Timmy's argument in line 73,80,83
+        this.mood += num // <- this num is the num in line 45
         this.weight += num
     }
 
     exercise(num){ // num refer to this methods not the eat()
-        this.weight -= num
+        this.weight -= num // <- this num is refering to line 50, not the same num for eat()
     }
 
-    ageUp(agenum){
-        this.age += agenum
+    ageUp(agenum){ // <- this has a param bc this method will need be resuable
+        this.age += agenum // <- mean this.age(Person's age at line 21) + agenum (arugment from line 73)
         this.height += agenum
         this.weight += agenum
         this.mood -= agenum
