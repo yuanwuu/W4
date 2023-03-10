@@ -56,7 +56,7 @@ class Person {
         this.height += agenum
         this.weight += agenum
         this.mood -= agenum
-        this.bankAccount += 10
+        this.bankAccount += 10 * agenum
     }
     
     buyHamster(hamster){

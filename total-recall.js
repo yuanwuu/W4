@@ -642,7 +642,7 @@ console.log(user)
 
 
 
-Cat Combinator
+// Cat Combinator
 
 /*
 1. Mama cat
@@ -681,42 +681,36 @@ const cat2 = {
 
 
 
-3. Combine Cats!
-The cats are multiplying!
+// 3. Combine Cats!
+// The cats are multiplying!
 
-Write a function combineCatsthat has two parameters mama, and papa. The function will take two arguments -- each a cat object.
+// Write a function combineCatsthat has two parameters mama, and papa. The function will take two arguments -- each a cat object.
+// Pass cat1and cat2as arguments to the combineCatsfunction. The function should console.log them.
+function combineCats (mama,papa) {
+} 
+console.log(cat1,cat2)
 
-Pass cat1and cat2as arguments to the combineCatsfunction. The function should console.log them.
-Example:
 
-combineCats(cat1, cat2)
-{ name: "Joe", age: 19, breed: "Mog" }
 
-{ name: "Jam", age: 45, breed: "Siamese" }
-
+/*
 This is to demonstrate that functions can take objects as arguments
-
-You could also invoke the combineCatsfunction by writing the objects straight into the parentheses:
-
+You could also invoke the combineCats function by writing the objects straight into the parentheses:
 combineCats({ name: "Craig", age: 20, breed: "unknown" }, { name: "Linda", age: 20, breed: "undefined" });
-
 Make it so the combineCatsfunction will return a combination of the two incoming cats
-
 The result should be an object wherein the
-
 name is a concatenation of the parents' names
 the age is 1
 the breed is each of the parents' breeds with a hyphen in between
 Example:
+*/
 
 console.log(combineCats(cat1, cat2));
-Result:
+console.log(combineCats(combineCats(cat1, cat2), combineCats(cat1, cat2)));
 
 
 
-This is to demonstrate that a function can return an object
 
-
+//This is to demonstrate that a function can return an object
 
 
 
