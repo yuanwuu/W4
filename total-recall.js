@@ -62,7 +62,7 @@ Using the provided variable definitions, replace the blanks so that all log stat
   console.log('Name' === 'Name');
   // FOR THE NEXT TWO, USE ONLY && OR ||
   console.log(true || false);
-  console.log(false __ false __ false __ false __ false __ true);
+  console.log(false && false && false && false && false || true);
   console.log(false && false)
   console.log(e === 'Kevin');
   console.log((a * b) > c); // note: a < b < c is NOT CORRECT (and is not a valid JS expression, think about using other math operations)
@@ -308,36 +308,8 @@ if ( mky > 10){
 H. What's in Your Closet?
 Below, we've given you examples of Kristyn and Thom's closets modeled as data in JavaScript.
 
-const kristynsCloset = [
-  "left shoe",
-  "cowboy boots",
-  "right sock",
-  "Per Scholas hoodie",
-  "green pants",
-  "yellow knit hat",
-  "marshmallow peeps"
-];
-
 // Thom's closet is more complicated. Check out this nested data structure!!
-const thomsCloset = [
-  [
-    // These are Thom's shirts
-    "grey button-up",
-    "dark grey button-up",
-    "light blue button-up",
-    "blue button-up",
-  ],[
-    // These are Thom's pants
-    "grey jeans",
-    "jeans",
-    "PJs"
-  ],[
-    // Thom's accessories
-    "wool mittens",
-    "wool scarf",
-    "raybans"
-  ]
-];
+
 What's Kristyn wearing today? Using bracket notation to access items in kristynsCloset, log the sentence "Kristyn is rocking that " + the third item in Kristyn's closet + " today!" to the console.
 Kristyn just bought some sweet shades! Add "raybans"to her closet after "yellow knit hat".
 Kristyn spilled coffee on her hat... modify this item to read "stained knit hat"instead of yellow.
@@ -474,30 +446,65 @@ Write a function getTwoLengths that accepts two parameters (strings). The functi
 
 console.log(getTwoLengths("Hank", "Hippopopalous"));
 => [4, 13]
-*/
 
-function getTwoLengths(str1,str2) {
-    for (let i = 0; i < getTwoLengths.length; i++) {
-       return str1.length
- 
+undefined solution 1:
+function getTwoLengths(str) { <-- only 1 param is specified, function was invoked w 2 arugments
+    for (let i = 0; i < getTwoLengths.length; i++) { <-- The for loop is iterating over getTwoLengths.length instead of str.length. getTwoLengths is a function, not the parameter str, so this will result in an error.
+       return str[i].length <-- The for loop is iterating over getTwoLengths.length instead of str.length. getTwoLengths is a function, not the parameter str, so this will result in an error.
         }
 
 }
-console.log(getTwoLengths("Hank", "Hippopopalous"));
+solution (not responsive):
+function getTwoLengths(str1, str2) {    <-- take exactly 2 arguments
+    const lengths = [];                 <-- reuslt will be pushed here and print out as an array
+    lengths.push(str1.length);          <-- calculate str 1 (Hank)
+    lengths.push(str2.length);          <-- calcualte str 2 (Hippopopalous)
+    return lengths;
+}
+
+console.log(getTwoLengths("Hank", "Hippopopalous")); // [4, 14]
+*/
+
+function getTwoLengths(str1, str2) {
+    const lengths = [];
+    for (let i = 0; i < arguments.length; i++) {
+      lengths.push(arguments[i].length);
+    }
+    return lengths;
+  }
+  
+  console.log(getTwoLengths("Hank", "Hippopopalous")); // [4, 14]
 
 
-
-
-
+/*
 F. getMultipleLengths
-Write a function getMultipleLengthsthat accepts a single parameter as an argument: an array of strings. The function should return an array of numbers where each number is the length of the corresponding string.
+Write a function getMultipleLengths that accepts a single parameter as an argument: an array of strings. The function should return an array of numbers where each number is the length of the corresponding string.
 
 console.log(getMultipleLengths(["hello", "what", "is", "up", "dude"]));
 => [5, 4, 2, 2, 4]
+*/
+
+function getMultipleLengths(strArr){
+    const strLength = []
+    for (const str of strArr) {
+        // str.length
+        strLength.push(str.length)
+    }
+
+    // const strLength = []                 <-- this needs to be defined before the for loop, in for loop can still have access it
+    // for (i = 0; i < strArr.length; i++){ 
+    //     *** const strLength = [] ***     <-- this shouldn't be here, inside the for loop const strLenght was only been defined and does nothing. 
+    //     *** str[i].length ***                    <-- [i] : when indexing for loop is used, in this case no need to write it out as the same exact line was written out in line 498
+    //     strLength.push(strArr[i].length)
+    // }
+    // return strLength 
+}
+console.log(getMultipleLengths(["hello", "what", "is", "up", "dude"]));
 
 
 
 
+/*
 G. maxOfThree
 Define a function maxOfThreethat takes three numbers as arguments and returns the largest of them. If all numbers are the same, it doesn't matter which one is returned. If the two largest numbers are the same, one of them should be returned. Be sure to test it with larger values in each of the three locations.
 
@@ -505,13 +512,228 @@ console.log(maxOfThree(6, 9, 1));
 => 9
 
 Did you use Google and find Math.max()? If so, great job! Very resourceful—keep looking stuff up! However, for this particular question, we need you to submit a solution that does not use Math.max().
+*/
+const maxOfThree = [23,12,11]
+const max = Math.max(...maxOfThree)
+console.log(max)
 
 
-
-
+/*
 H. printLongestWord
-Write a function printLongestWordthat accepts a single argument, an array of strings. The method should return the longest word in the array. In case of a tie, the method should return the word that appears first in the array.
+Write a function printLongestWord that accepts a single argument, an array of strings. The method should return the longest word in the array. In case of a tie, the method should return the word that appears first in the array.
+*/
 
+
+function printLongestWord (strArr) {        //<-- strArr refers to the printLongestWord array
+    for(let word of strArr){                //<-- let each string(word) inside the array compare against each other
+        if (word.length > strArr.length){   //<-- if each string(word) is longer than the words in the string
+         return word    
+        }
+    }
+}
 console.log(printLongestWord(["BoJack", "Princess", "Diane", "a", "Max", "Peanutbutter", "big", "Todd"]));
-=> "Peanutbutter"
+
+
+/*
+Objects
+Let's set up an object data structure. Let's say we have a website that sells products, and we have a user of our website, and we want to store that user's data. The object data structure is a good way to organize the data from our user.
+*/
+
+
+
+/*
+A. Make a user object
+Create an object called user.
+Write in to the object the key-value pairs for name, email, age, and purchased. Set the value of purchasedto an empty array []. Set the other values to whatever you would like.
+*/
+
+const user ={
+    name:'John',
+    email: 'user@example.com',
+    age: '24',
+    purchased: []
+}
+
+
+/*
+B. Update the user
+Our user has changed his or her email address. Without changing the original userobject, update the emailvalue to a new email address.
+Our user has had a birthday! Without changing the original user object, increment the age value using the postfix operator. Hint: age++
+*/
+user.email = 'John@example.com'
+user.age++
+
+
+/*
+C. Adding keys and values
+You have decided to add your user's location to the data that you want to collect.
+
+Without changing the original userobject, add a new key location to the object, and give it a value or some-or-other location (a string).
+*/
+user.location = 'New York'
+
+
+/*
+D. Shopaholic!
+Our user has purchased an item! They have purchased some "carbohydrates". Using .push(), add the string "carbohydrates" to the purchasedarray.
+Our user has purchased an item! They have purchased some "peace of mind". Using .push(), add the string "peace of mind" to the purchasedarray.
+Our user has purchased an item! They have purchased some "Merino jodhpurs". Using .push(), add the string "Merino jodhpurs" to the purchasedarray.
+Console.log just the "Merino jodhpurs" from the purchasedarray.
+*/
+user.purchased.push('carbohydrates')
+user.purchased.push('peach of mind')
+user.purchased.push('Merino jodhpurs')
+console.log(user.purchased[2])
+
+
+/*
+E. Object-within-object
+Remember that you can add an object to an existing object in the same way that you can add any new property/value pair.
+
+If we want to give our user a friendwith a nameand age, we could write:
+*/
+user.friend = {
+    name: "Grace Hopper",
+    age: 85,
+    purchased: []
+}
+//When we console.log user, we would see the friendobject added to our user object.
+/*
+Write a friendobject into your userobject and give the friend a name, age, location, and purchased array (empty for now)
+Console.log just the friend's name
+Console.log just the friend's location
+CHANGE the friend's age to 55
+The friendhas purchased "The One Ring". Use .push()to add "The One Ring" to the friend's purchasedarray.
+The friendhas purchased "A latte". Use .push()to add "A latte" to the friend's purchasedarray.
+Console.log just "A latte" from the friend's purchasedarray.
+*/
+
+user.friend.age = 55
+user.friend.purchased.push('The One Ring')
+user.friend.purchased.push('A latte')
+console.log(user.friend.purchased[1])
+
+
+/*
+F. Loops
+Write a for loop that iterates over the User's purchasedarray (NOT the friend's purchased array), and prints each element to the console.
+Write a for loop that iterates over the Friend's purchasedarray, and prints each element to the console.
+*/
+console.log (user.purchased)
+console.log(user.friend.purchased)
+
+
+/*
+G. Functions can operate on objects
+Write a single function updateUser that takes no parameters. When the function is run, it should:
+it should increment the user's age by 1
+make the user's name uppercase
+The function does not need a return statement, it will merely modify the user object.
+
+Write a function oldAndLoudthat performs the exact same tasks as updateUser, but instead of hard-coding it to only work on our userobject, make it take a parameter person, and have it modify the object that is passed in as an argument when the function is called. Call your oldAndLoudfunction with useras the argument.
+*/
+function updateUser(){  // <-- no need parameter, it can be ran bs ref. user is in global scope
+    user.age = user.age++
+    user.name = user.name.toUpperCase();
+}
+updateUser();
+console.log(user)
+
+
+
+
+Cat Combinator
+
+/*
+1. Mama cat
+Define an object called cat1 that contains the following properties:
+
+name
+breed
+age (a number)
+console.log the cat's age
+console.log the cat's breed
+*/
+
+const cat1 = {
+    name: 'mrs. meow meow',
+    breed: 'domestic short hair',
+    age: 3,
+}
+console.log(cat1.age)
+console.log(cat1.breed)
+
+
+/*
+2. Papa cat
+Define an object called cat2 that also contains the properties:
+
+name
+breed
+age (a number)
+*/
+const cat2 = {
+    name: 'mr. meow meow',
+    breed: 'domestic long hair',
+    age: 4,
+}
+
+
+
+
+3. Combine Cats!
+The cats are multiplying!
+
+Write a function combineCatsthat has two parameters mama, and papa. The function will take two arguments -- each a cat object.
+
+Pass cat1and cat2as arguments to the combineCatsfunction. The function should console.log them.
+Example:
+
+combineCats(cat1, cat2)
+{ name: "Joe", age: 19, breed: "Mog" }
+
+{ name: "Jam", age: 45, breed: "Siamese" }
+
+This is to demonstrate that functions can take objects as arguments
+
+You could also invoke the combineCatsfunction by writing the objects straight into the parentheses:
+
+combineCats({ name: "Craig", age: 20, breed: "unknown" }, { name: "Linda", age: 20, breed: "undefined" });
+
+Make it so the combineCatsfunction will return a combination of the two incoming cats
+
+The result should be an object wherein the
+
+name is a concatenation of the parents' names
+the age is 1
+the breed is each of the parents' breeds with a hyphen in between
+Example:
+
+console.log(combineCats(cat1, cat2));
+Result:
+
+
+
+This is to demonstrate that a function can return an object
+
+
+
+
+
+4. Cat brain bender
+If combineCatsreturns an object, and if combineCatstakes objects as arguments, then it stands to reason that:
+
+catCombinatorcan use itself as its own argument.
+
+Take a second to stew on that . . .
+
+What is the result of:
+
+console.log(combineCats(combineCats(cat1, cat2), combineCats(cat1, cat2)));
+Whoa . . .
+
+The above console.log is two levels deep of combineCats.
+
+Write a console.log that is three levels deep of combineCats. combineCats should have two arguments, each which are combineCats, each which have two arguments, each which are combineCats.
+Your output should look something like:
 
